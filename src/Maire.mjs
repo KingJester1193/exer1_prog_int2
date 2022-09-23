@@ -41,11 +41,17 @@ export default class Maire {
             })
         }
         else if(params.type == "nom"){
+            aRecherche = this.#aMaires.filter(function(unMaire){
+                let res = false;
+                if(unMaire.prenom == params.valeur || params.valeur == unMaire.nom){ 
+                    res =true;
+                }
+                return res;
          
-        }
+        })
         
         return aRecherche
-    }
+    }}
 
     /**
      * Retourne la liste des maires trié selon les paramètres

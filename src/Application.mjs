@@ -42,7 +42,21 @@ export default class Application {
         this.afficherResultats(resultat);
         
     }
+    
     rechercheParNom (){
+
+        let recherche = {
+            type:"nom", 
+            valeur:""
+        }
+
+recherche.valeur = document.querySelector(".champ-recherche").value
+let resultat = this.oMaireMtl.rechercheMaires(recherche);
+//console.log(this)
+console.log(resultat);
+this.afficherResultats(resultat);
+
+
           
     }
 
