@@ -9,11 +9,15 @@ export default class Application {
      * Il instancie l'objet Maire.
      */
     constructor() {
-        console.log(mairesMTL);
+        //console.log(mairesMTL);
         this.oMaireMtl = new Maire(mairesMTL);
         
         document.querySelector(".btn-recherche-date").addEventListener("click", this.rechercheParDate.bind(this));
         document.querySelector(".btn-recherche-nom").addEventListener("click", this.rechercheParNom.bind(this));
+        document.querySelector(".btn-liste-nom").addEventListener("click", this.listeMaires.bind(this));
+        document.querySelector(".btn-liste-date").addEventListener("click", this.listeMaires.bind(this));
+       
+       
         /*document.querySelector(".btn-recherche-date").addEventListener("click", ()=>{
             let resultat = this.oMaireMtl.rechercheMaires({type:"date", valeur:"2013"});
             console.log(this)
@@ -29,22 +33,26 @@ export default class Application {
     Mettre les autres méthodes ici.
     */
 
-    rechercheParDate (){
+    rechercheParDate (){     
+
+
+
+
         let recherche = {
                             type:"date", 
                             valeur:""
                         }
 
-        recherche.valeur = document.querySelector(".champ-recherche").value
+        recherche.valeur = document.querySelector(".champ-recherche").value;
+        //console.log(recherche.valeur)
         let resultat = this.oMaireMtl.rechercheMaires(recherche);
-        //console.log(this)
+        //console.log(this.oMaireMtl);
         console.log(resultat);
-        this.afficherResultats(resultat);
+       this.afficherResultats(resultat);
         
     }
-    
-    rechercheParNom (){
 
+    rechercheParNom (){
         let recherche = {
             type:"nom", 
             valeur:""
@@ -55,18 +63,23 @@ let resultat = this.oMaireMtl.rechercheMaires(recherche);
 //console.log(this)
 console.log(resultat);
 this.afficherResultats(resultat);
-
-
-          
     }
 
+
+    
     afficherResultats(resultats){
+
+ //----------------------vidange de vieux tableau---------------------------
+
+        let  vieuxTab = document.querySelector(".tbl-resultat");
+        //console.log(vieuxTab);
+        vieuxTab.remove();
+ //-------------------------------------------------
+
         let chaineHTML = "";
         resultats.forEach(unMaire => {
             chaineHTML += `<tr><td>${unMaire.nom}</td><td>${unMaire.prenom}</td><td>${unMaire.debut}</td><td>${unMaire.fin}</td></tr>`
         });
-        
-        
         document.querySelector(".tbl-resultat").insertAdjacentHTML("beforeend", chaineHTML);
     }
   }

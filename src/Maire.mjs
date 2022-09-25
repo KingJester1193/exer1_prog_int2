@@ -30,28 +30,36 @@ export default class Maire {
       * @returns {UnMaire[]} - Tableau des résultats;
      */
     rechercheMaires(params){
-        let aRecherche;
+     
+   
+        let aRecherche = [];
         if(params.type == "date"){
-            aRecherche = this.#aMaires.filter(function(unMaire){
+            aRecherche = this.#aMaires.filter(function(UnMaire){
                 let res = false;
-                if(unMaire.debut <= params.valeur && params.valeur <= unMaire.fin){ // Quoi faire pour fin == "null"?
-                    res =true;
+                if(UnMaire.debut <= params.valeur && params.valeur <= UnMaire.fin){ // Quoi faire pour fin == "null"?
+                    
+                    res = true;
+                    
+                    //console.log(res)
                 }
                 return res;
-            })
+            });                  console.log(aRecherche)
+
         }
         else if(params.type == "nom"){
             aRecherche = this.#aMaires.filter(function(unMaire){
                 let res = false;
                 if(unMaire.prenom == params.valeur || params.valeur == unMaire.nom){ 
-                    res =true;
+                    res = true;
                 }
                 return res;
          
         })
+    }
+        console.log(aRecherche)
+        return aRecherche;
         
-        return aRecherche
-    }}
+    }
 
     /**
      * Retourne la liste des maires trié selon les paramètres
@@ -61,8 +69,20 @@ export default class Maire {
      * @returns {UnMaire[]} - Tableau des résultats
      */
     listeMaires(params) {
+
+         let aTrie;
+
+
+        if(params.type == "date"){
+            aTrie = unMaire.sort();
+            return aTrie;
+            }else if(params.type == "nom"){
+            aTrie = unMaire.sort();
+            return aTrie;
+            
+        }
+        }
         
-    }
 
     /**
      * @returns {Number} - Le nombre d'enregistrement dans le tableau des maires
